@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\FleetFlow.Shared\FleetFlow.Shared.csproj" />
+    <ProjectReference Include="..\FleetFlow.Modules.Identity\FleetFlow.Modules.Identity.csproj" />
+    <ProjectReference Include="..\FleetFlow.Modules.Fleet\FleetFlow.Modules.Fleet.csproj" />
+    <ProjectReference Include="..\FleetFlow.Modules.Deliveries\FleetFlow.Modules.Deliveries.csproj" />
+    <ProjectReference Include="..\FleetFlow.Modules.Maintenance\FleetFlow.Modules.Maintenance.csproj" />
+    <ProjectReference Include="..\FleetFlow.Modules.Notifications\FleetFlow.Modules.Notifications.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e937543c-7eef-4c69-a97d-4061569298fd</UserSecretsId>
+  </PropertyGroup>
+
+</Project>

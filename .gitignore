@@ -55,3 +55,31 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Visual Studio
+.vs/
+
+# Node / frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Environment variables (never commit real secrets)
+.env
+.env.*
+!.env.example
+
+# Terraform (state only - keep .tf source files)
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# User-specific files
+*.user
+*.suo
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
