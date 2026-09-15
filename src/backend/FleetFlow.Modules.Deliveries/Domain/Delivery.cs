@@ -90,6 +90,36 @@ public class Delivery
         Status = DeliveryStatus.Assigned;
     }
 
+    public void AssignDriver(Guid driverId)
+    {
+        if (driverId == Guid.Empty)
+        {
+            throw new ArgumentException("Driver id is required.", nameof(driverId));
+        }
+
+        DriverId = driverId;
+        if (Status is DeliveryStatus.Created)
+        {
+            Status = DeliveryStatus.Assigned;
+        }
+    }
+
+    public void AssignVehicle(Guid vehicleId)
+    {
+        if (vehicleId == Guid.Empty)
+        {
+            throw new ArgumentException("Vehicle id is required.", nameof(vehicleId));
+        }
+
+        VehicleId = vehicleId;
+        if (Status is DeliveryStatus.Created)
+        {
+            Status = DeliveryStatus.Assigned;
+        }
+    }
+
+    public void ChangeStatus(DeliveryStatus status) => Status = status;
+
     private Delivery()
     {
         // Required by EF Core.

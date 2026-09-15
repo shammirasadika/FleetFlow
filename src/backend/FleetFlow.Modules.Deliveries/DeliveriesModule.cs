@@ -1,4 +1,9 @@
+using FleetFlow.Modules.Deliveries.Features.AssignDriver;
+using FleetFlow.Modules.Deliveries.Features.AssignVehicle;
+using FleetFlow.Modules.Deliveries.Features.ChangeDeliveryStatus;
 using FleetFlow.Modules.Deliveries.Features.CreateDelivery;
+using FleetFlow.Modules.Deliveries.Features.GetDelivery;
+using FleetFlow.Modules.Deliveries.Features.ListDeliveries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -12,6 +17,11 @@ public static class DeliveriesModule
     public static IServiceCollection AddDeliveriesModule(this IServiceCollection services)
     {
         services.AddScoped<CreateDeliveryHandler>();
+        services.AddScoped<GetDeliveryHandler>();
+        services.AddScoped<ListDeliveriesHandler>();
+        services.AddScoped<AssignDriverHandler>();
+        services.AddScoped<AssignVehicleHandler>();
+        services.AddScoped<ChangeDeliveryStatusHandler>();
 
         return services;
     }
@@ -20,11 +30,12 @@ public static class DeliveriesModule
     {
         var group = endpoints.MapGroup("/deliveries").WithTags("Deliveries");
 
-        // Placeholder proving the module is wired up; replaced by real feature endpoints later.
-        group.MapGet("/", () => Results.Ok(Array.Empty<object>()))
-            .WithName("GetDeliveries");
-
         group.MapCreateDeliveryEndpoint();
+        group.MapGetDeliveryEndpoint();
+        group.MapListDeliveriesEndpoint();
+        group.MapAssignDriverEndpoint();
+        group.MapAssignVehicleEndpoint();
+        group.MapChangeDeliveryStatusEndpoint();
 
         return endpoints;
     }

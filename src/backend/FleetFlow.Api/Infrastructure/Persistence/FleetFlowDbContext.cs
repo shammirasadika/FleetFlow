@@ -1,6 +1,7 @@
 using FleetFlow.Modules.Deliveries;
 using FleetFlow.Modules.Deliveries.Domain;
 using FleetFlow.Modules.Deliveries.Infrastructure;
+using FleetFlow.Modules.Fleet;
 using FleetFlow.Modules.Fleet.Domain;
 using FleetFlow.Modules.Fleet.Infrastructure;
 using FleetFlow.Modules.Identity.Domain;
@@ -11,7 +12,7 @@ namespace FleetFlow.Api.Infrastructure.Persistence;
 
 /// <summary>The single EF Core context shared across modules in the modular monolith.</summary>
 public sealed class FleetFlowDbContext(DbContextOptions<FleetFlowDbContext> options)
-    : DbContext(options), IDeliveriesDbContext
+    : DbContext(options), IDeliveriesDbContext, IFleetDbContext
 {
     public DbSet<Company> Companies => Set<Company>();
 

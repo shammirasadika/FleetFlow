@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using FleetFlow.Api.Infrastructure.Persistence;
 using FleetFlow.Modules.Deliveries;
+using FleetFlow.Modules.Fleet;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +24,10 @@ builder.Services.AddDbContext<FleetFlowDbContext>(options =>
         sqlOptions => sqlOptions.EnableRetryOnFailure()));
 
 builder.Services.AddScoped<IDeliveriesDbContext>(sp => sp.GetRequiredService<FleetFlowDbContext>());
+builder.Services.AddScoped<IFleetDbContext>(sp => sp.GetRequiredService<FleetFlowDbContext>());
 
 builder.Services.AddDeliveriesModule();
+builder.Services.AddFleetModule();
 
 builder.Services.AddHealthChecks();
 
@@ -42,6 +45,7 @@ app.MapHealthChecks("/health");
 
 var api = app.MapGroup("/api");
 api.MapDeliveriesEndpoints();
+api.MapFleetEndpoints();
 
 app.Run();
 
