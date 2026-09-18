@@ -1,9 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { getDeliveries } from "../api/deliveriesApi";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { getDeliveries, type GetDeliveriesParams } from "../api/deliveriesApi";
 
-export function useDeliveries() {
+export function useDeliveries(params: GetDeliveriesParams) {
   return useQuery({
-    queryKey: ["deliveries"],
-    queryFn: getDeliveries,
+    queryKey: ["deliveries", params.page, params.pageSize],
+    queryFn: () => getDeliveries(params),
+    placeholderData: keepPreviousData,
   });
 }
