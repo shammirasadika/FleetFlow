@@ -1,3 +1,5 @@
+import { ComingSoonPage } from "../components/common/ComingSoonPage";
+
 export function DriversPage() {
-  return <h1>Drivers</h1>;
+  return <ComingSoonPage title="Drivers" description="Driver management isn't available yet." />;
 }
