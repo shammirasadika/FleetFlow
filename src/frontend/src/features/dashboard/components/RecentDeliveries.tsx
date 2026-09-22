@@ -11,11 +11,14 @@ interface RecentDeliveriesProps {
 
 export function RecentDeliveries({ deliveries, isLoading }: RecentDeliveriesProps) {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-gray-100 bg-white/80 p-5 shadow-sm backdrop-blur-sm">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-gray-900">Recent Deliveries</h3>
-        <Link to="/deliveries" className="text-sm font-medium text-blue-600 hover:text-blue-700">
-          View all deliveries
+        <h3 className="text-base font-semibold text-gray-900">Recent Deliveries</h3>
+        <Link
+          to="/deliveries"
+          className="rounded-md text-sm font-medium text-blue-600 hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+        >
+          View all
         </Link>
       </div>
       {isLoading ? (

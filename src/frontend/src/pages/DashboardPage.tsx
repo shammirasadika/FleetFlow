@@ -1,6 +1,7 @@
 import { Package, RefreshCw, Truck, Users } from "lucide-react";
 
 import { DeliveryStatusOverview } from "../features/dashboard/components/DeliveryStatusOverview";
+import { OperationsHighlight } from "../features/dashboard/components/OperationsHighlight";
 import { QuickActions } from "../features/dashboard/components/QuickActions";
 import { RecentDeliveries } from "../features/dashboard/components/RecentDeliveries";
 import { SummaryCard } from "../features/dashboard/components/SummaryCard";
@@ -20,10 +21,13 @@ export function DashboardPage() {
   const recentDeliveries = deliveries.slice(0, 5);
 
   return (
-    <div className="mx-auto max-w-6xl p-6">
-      <div className="mb-6">
-        <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-500">Overview of your fleet and delivery operations</p>
+    <div className="relative mx-auto max-w-6xl p-6">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Dashboard</h1>
+        <p className="mt-2 text-sm text-gray-600 sm:text-base">
+          Overview of your fleet and delivery operations
+        </p>
+        <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
       </div>
 
       {isError && (
@@ -49,25 +53,43 @@ export function DashboardPage() {
           value={isLoading ? "--" : (data?.totalCount ?? "--")}
           icon={Package}
           helperText="All delivery jobs"
+          accent="blue"
         />
         <SummaryCard
           label="In Transit"
           value={isLoading ? "--" : inTransitCount}
           icon={Truck}
           helperText="Active shipments"
+          accent="green"
         />
-        <SummaryCard label="Drivers" value="--" icon={Users} helperText="Driver data not yet available" />
-        <SummaryCard label="Vehicles" value="--" icon={Truck} helperText="Vehicle data not yet available" />
+        <SummaryCard
+          label="Drivers"
+          value="--"
+          icon={Users}
+          helperText="Driver data not yet available"
+          accent="purple"
+        />
+        <SummaryCard
+          label="Vehicles"
+          value="--"
+          icon={Truck}
+          helperText="Vehicle data not yet available"
+          accent="orange"
+        />
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2">
+          <DeliveryStatusOverview deliveries={deliveries} isLoading={isLoading} />
+        </div>
+        <QuickActions />
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <RecentDeliveries deliveries={recentDeliveries} isLoading={isLoading} />
         </div>
-        <div className="flex flex-col gap-6">
-          <DeliveryStatusOverview deliveries={deliveries} isLoading={isLoading} />
-          <QuickActions />
-        </div>
+        <OperationsHighlight />
       </div>
     </div>
   );
